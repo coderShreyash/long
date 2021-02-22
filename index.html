@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Fest</title>
+    <link rel="stylesheet" href="style.css">
+  
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDKPwz6xjyCUN3r2k0EkbFRGCZCsU0FvZY",
+    authDomain: "the-blog-fest.firebaseapp.com",
+    databaseURL: "https://the-blog-fest.firebaseio.com",
+    projectId: "the-blog-fest",
+    storageBucket: "the-blog-fest.appspot.com",
+    messagingSenderId: "949240382353",
+    appId: "1:949240382353:web:08a4976ce1fc61fefd9030"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="script.js"></script>
+<script>
+  var database=firebase.database();
+  function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  
+  function checkCookie() {
+    var user = getCookie("usernaam");
+    var noa = getCookie("Auth_No.");
+    var pro = getCookie("profile");
+    if (user.trim() != "") {
+      document.getElementById('i1').setAttribute('src',"blog.html?"+user);
+      document.getElementById("profile").setAttribute("src",pro);
+      document.getElementById("usernam").innerHTML=user;
+      document.getElementById("names").innerHTML=getCookie("usernaam");
+document.getElementById("prophoto").setAttribute("src",getCookie("profile"));
+    }
+    else{
+     document.getElementById("conta").style.display="block";
+     document.getElementById("container").style.display="none";
+    }
+}
+
+  </script>
+   <script>
+    var database=firebase.database();
+    var pro="";
+    var gi;
+      database.ref("Authors/Authors/").on("value",function(data){
+      gi=data.val();
+      })
+      
+    function submitData(){
+      event.preventDefault();
+      if(pro.length>0){
+      database.ref("Authors/Authors/").on("value",function(data){
+      gi=data.val();
+      })
+      var nam = document.getElementById("name").value;
+      var pas = document.getElementById("pass").value;
+     
+      setCookie("usernaam",nam, 35600);
+      setCookie("profile",pro, 35600);
+     
+      
+      gi++
+      database.ref("Authors/").set({
+        Authors:gi
+      })
+      setCookie("Auth_No.",gi, 35600);
+
+      database.ref("Author"+gi).set({
+      Name:nam,
+      Password:pas,
+      Profile:pro
+      })
+      document.getElementById("profile").setAttribute("src",pro);
+      document.getElementById("usernam").innerHTML=nam;
+
+      document.getElementById("container").style.display="block";
+      document.getElementById("conta").style.display="none";
+      }
+      else{
+        alert("Please Choose A Profile Photo !")
+      }
+    }
+    function setImg(imgr){
+      pro=imgr+".png";
+      document.getElementById(imgr).style.borderColor="gold";
+    }
+    </script>
+</head>
+<body onload="checkCookie()">
+  <div class="conta" id="conta">
+   
+    <div class="text">Sign Up Form</div>
+
+            <form id="myForm" onsubmit="submitData()">
+                <div class="data ss-item-required">
+                    <label for="name">Name: </label><br>
+                <input autocomplete=none type="text" name="name" id="name" placeholder="Your Name" maxlength="10" required>
+                
+                </div>
+               
+                <div class="data ss-item-required">
+                    <label for="pass">Create Password: </label><br>
+                    <input type="password" name="pass" id="pass" placeholder="Create Password" required>
+                  
+                </div>
+                <div class="data ss-item-required">
+                  <label for="pass">Choose Profile Photo: </label><br>
+                  <img id="brain" src="brain.png" onclick="setImg('brain')" width=50>
+                  <img id="boy" src="boy.png" onclick="setImg('boy')" width="50">
+                  <img id="girl" src="girl.png" onclick="setImg('girl')" width=50>
+                  <img id="ink" src="ink.png" onclick="setImg('ink')" width="50"height=50>
+                  <Br>
+                  <img id="ninja" src="ninja.png" onclick="setImg('ninja')" width="50">
+                  <img id="student" src="student.png" onclick="setImg('student')" >
+                  <img id="teacher" src="teacher.png" onclick="setImg('teacher')">
+                  <img id="codr" src="codr.png" onclick="setImg('codr')">
+                </div>
+               
+               <div class="btn">
+                <button type="submit">Sign up</button>
+            </div>
+            </form>
+    
+        </div>
+       
+  <div class="container" id="container">
+    <div id="prong" style="display:none;font-size: xx-large;position: absolute;z-index:2;width: 245%;height:245%;background: url('https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png');background-size:cover ;">
+      <button onclick="document.getElementById('prong').style.display='none'" style="color: red;float: right;margin: 20px;font-size: 50px;">X</button>
+      <h1>Your Profile:</h1><br>
+      <img id="prophoto" style="width: 100px;display: flex;justify-content: center;"><br>
+    <div id="prong" style="display: flex;"> <h2>Name: </h2> <h2 id="names"></h2></div><br>
+    </div>  
+  <div class="flex">
+        <div
+        onclick="document.getElementById('prong').style.display='block'"
+         class="title"><img id="profile" width="50"><br>
+          <h2 id="usernam"></h2>
+    </div>
+    <div class="liste">
+      <div class="item" onclick="blogf()"> <img src="blog.png"><h3>Blogs</h3></div>
+     <div class="item" onclick="window.open('game1.html')">  <img src="games.png"><h3>Games</h3></div>
+       <div class="item" onclick="community()"><img src="com.png"><h3>Chat</h3></div>
+       <div class="item" onclick="extraf()"><img src="pngwing.png"><h3>Extra Features</h3></div>
+       
+    </div>    
+
+</div>  
+
+<div class="combox" id="combox">
+  <ul>
+<li><h1 onclick=community() style="font-family: cursive;">Chat</h1></li>
+<li><h1 onclick=community() style="font-family: cursive;">News</h1></li>
+</ul>
+
+</div>
+<center>
+ 
+  <iframe style="margin-top:-50px;overflow: hidden;" id='i1'src="blog.html?" width="100%" height="80%" frameborder=0;>
+
+  </iframe>
+
+</center>
+  </div>
+ 
+</body>
+</html>

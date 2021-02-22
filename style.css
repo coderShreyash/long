@@ -1,0 +1,276 @@
+.container{
+    background: linear-gradient(125deg,skyblue,cyan,rgb(48, 68, 255),indigo);
+    background-repeat: no-repeat;
+}
+.title{
+    color: white;
+    text-shadow: 0 0 10px blue,0 0 15px blueviolet;
+}
+h3{
+    z-index: 1;
+}
+.title{
+    margin: 10px;
+    text-align: center;
+}
+.flex,.liste{
+    display: flex;
+    justify-content: space-around;
+}
+.flex{
+    margin-bottom:50px;
+}
+.combox{
+    text-align: left;
+    width:12%;
+    background: rgb(240, 238, 238);
+    margin-top: -110px;
+    margin-bottom: -1%;
+    margin-left:60.75%;
+    border-radius: 20%;
+}
+.combox ul{
+    text-align: left;
+    list-style: none;
+}
+.combox li {
+    margin-left:-15px ;
+}
+h3{
+    font-size:25px;
+}
+.liste{
+    display: flex;
+    width: 100%;
+    margin-top: 1%;
+    margin-left: 8%;
+    cursor: pointer;
+}
+
+.liste .item{
+    display: flex;
+    
+}
+.liste .item h3{
+    
+   color:white;
+   text-shadow: 0 0 10px green,0 0 15px gray;
+   
+}
+.liste .item img{
+    width: 50px;
+    height:50px;
+    margin-top:10px;
+    
+}
+.liste .item img{
+    width: 40%;
+    height:50%;
+    margin-top:10px;
+}
+h3{
+    font-size: 200%;
+}
+.combox{
+    visibility: hidden;
+}
+@media screen and (max-width:1101px){
+    .container{
+        margin-left:-12px;
+        margin-top:-11px;
+        width:100%;
+        height:105%;
+    }
+    .title{
+        width:5%;
+    }
+    h1,h2{
+        margin-left:11px;
+    }
+   
+    .liste .item img{
+        width: 50%;
+        height:50%;
+        margin-top:10px;
+    }
+    h3{
+        font-size: 175%;
+    }
+}
+
+
+@media screen and (max-width:1023px){
+    #profile{
+        width:70%;
+    }
+    .combox{
+        text-align: left;
+        width:12%;
+        background: rgb(240, 238, 238);
+        margin-top: -110px;
+        margin-left:60%;
+        border-radius: 20%;
+    }
+    .combox ul{
+        text-align: left;
+        list-style: none;
+    }
+    .combox li {
+        margin-left:-15px ;
+    }
+    .container{
+        margin-left:-12px;
+        margin-top:-11px;
+        width:256%;
+        height:256%;
+    }
+    .title{
+    width:10%;
+    font-size: 200%;        
+    }
+  
+    h1,h2{
+        margin-left:11px;
+    }
+    .liste .item img{
+        width: 40%;
+        height:50%;
+        margin-top:10px;
+    }
+    h3{
+        font-size:300%;
+    }
+    
+}
+@media screen and (max-width:450px){
+    .flex{
+        margin-bottom:175px;
+        }
+    .liste .item img{
+        width: 45%;
+        height:45%;
+        margin-top:10px;
+    }
+    h3{
+        font-size:200%;
+    }
+    .combox{
+        text-align: left;
+        width:15%;
+        background: rgb(240, 238, 238);
+        margin-top: -200px;
+        margin-bottom: -1%;
+        margin-left:60.75%;
+        border-radius: 20%;
+    }
+    .combox ul{
+        text-align: left;
+        list-style: none;
+    }
+    .combox li {
+        margin-left:-15px ;
+    }
+    #profile{
+        width:100%;
+    }
+    .title{
+        width:10%;
+        font-size: 150%;        
+        }
+}
+
+@media screen and (max-width:351px){
+    .flex{
+    margin-bottom:125px;
+    }
+    .combox{
+        text-align: left;
+        width:17.5%;
+        background: rgb(240, 238, 238);
+        margin-top: -25%;
+        margin-bottom: 5%;
+        margin-left:60.75%;
+        border-radius: 20%;
+    }
+    .title{
+        width:12.5%;
+        font-size: 100%;       
+        margin-right: -30px; 
+        }
+    .combox ul{
+        text-align: left;
+        list-style: none;
+    }
+    .combox li {
+        margin-left:-15px ;
+    }
+.liste .item img{
+    width: 40%;
+    height:45%;
+    margin-top:10px;
+}
+h3{
+    font-size: 175%;
+}
+
+}
+.conta{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+    background:white;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.conta img{
+    border: 5px solid black;
+    border-radius: 50%;
+    width: 50px;
+}
+.conta .data{
+    text-align: center;
+}
+.conta label,input{
+     font-size: large;
+     font-weight: bold;
+     height: 35px;
+     text-align: center;
+
+ }
+ .conta label{
+     text-align: center;
+     font-size: 27.5px;
+
+ }
+ .conta .text{
+     font-size: 40px;
+     font-weight: bold;
+     margin-bottom:20px ;
+     text-align: center;
+     text-align: center;
+
+ }
+ .conta input{
+     margin-bottom: 20px;
+     border: 2px solid black;
+
+ }
+ .conta button{
+     width:256px;
+     height: 35px;
+     font-size: x-large;
+     font-weight: bold;
+     border: 3px solid black;
+     border-radius:5px;
+     background:linear-gradient(90deg,cyan,rgb(49, 49, 248),blue,indigo);
+     text-align: center;
+ }
+ .conta button:hover{
+     background:linear-gradient(90deg,indigo,blue,rgb(49, 49, 248),cyan);
+ }
+ .conta .btn{
+     text-align: center;
+ }
+

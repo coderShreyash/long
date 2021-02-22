@@ -1,0 +1,19 @@
+*{
+    text-align:center;
+}
+body{
+    background:transparent;
+}
+h1,h2{
+    color:green;
+    text-shadow: 0 0 6px white,0 0 12px whitesmoke,0 0 16px silver;
+   
+}
+h2{
+    cursor:pointer;
+}
+.nav{
+    margin-top:-20px;
+    display:flex;
+    justify-content: space-evenly;
+}

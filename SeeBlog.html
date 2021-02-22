@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title></title>
+      
+    <style>
+        button{
+            width: 70px;
+            height: 30px;
+            background:linear-gradient(rgb(99, 99, 247),rgb(3, 3, 235));
+            font-weight: bold;
+            border: 3px solid black;
+            cursor: pointer;
+        }
+        .l{
+            width:45px;
+            margin-bottom:-15px;
+            margin-right: 35px;
+        }
+        .d{
+            margin-bottom:-20px;
+            margin-left:5px;
+        }
+
+   
+        @keyframes dislike{
+            0%,100%{
+                transform: none;
+            }
+            25%{
+                transform: rotateZ(-60deg)
+            }
+            50%{
+                transform: rotateZ(60deg);
+            }
+            75%{
+                transform: scale(1.5)
+            }
+        }
+        @keyframes like{
+            0%,100%{
+                transform: none;
+            }
+            20%,50%{
+                transform: scale(1.25)
+            }
+            30%,60%{
+                transform: scale(1.5);
+            }
+            40%,70%{
+                transform: scale(1.25)
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div style="width: 100%;height: 100%;"id="hello"></div>
+    
+         <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDKPwz6xjyCUN3r2k0EkbFRGCZCsU0FvZY",
+    authDomain: "the-blog-fest.firebaseapp.com",
+    databaseURL: "https://the-blog-fest.firebaseio.com",
+    projectId: "the-blog-fest",
+    storageBucket: "the-blog-fest.appspot.com",
+    messagingSenderId: "949240382353",
+    appId: "1:949240382353:web:08a4976ce1fc61fefd9030"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    var database=firebase.database();
+    var num;
+    database.ref('Blogging/Blogs').on('value',function(data){
+        num=data.val();
+    })
+var path;
+var pathd;
+   function like(){
+    var database=firebase.database();
+    var likes;
+     path=window.location.search+"Likes";
+    database.ref('Blog'+window.location.search+'Likes/Likes').on('value',function(data){likes=data.val()});
+       if(localStorage.getItem(path)===null&&(localStorage.getItem(pathd)==="false"||localStorage.getItem(pathd)===null)||localStorage.getItem(path)==="null"&&(localStorage.getItem(pathd)==="false"||localStorage.getItem(pathd)===null)){
+   localStorage.setItem(path,"true");
+   likes++
+   document.getElementById("l").style.animation="like 1s linear";
+   database.ref('Blog'+window.location.search+'Likes').set({
+       Likes:likes
+   })
+       }
+       else{
+           if(localStorage.getItem(path)==="true"){
+            localStorage.setItem(path,"false");
+            likes--
+            document.getElementById("l").style.animation="";
+            database.ref('Blog'+window.location.search+'Likes').set({
+       Likes:likes
+   })
+           }
+           else if(localStorage.getItem(path)==="false"&&(localStorage.getItem(pathd)==="false"||localStorage.getItem(pathd)===null)){
+            localStorage.setItem(path,"true"); 
+            likes++
+            document.getElementById("l").style.animation="like 1s linear";
+            database.ref('Blog'+window.location.search+'Likes').set({
+       Likes:likes
+   })
+           }
+       }
+    }
+       function dislike(){
+    var database=firebase.database();
+    var dislikes;
+    pathd=window.location.search+"Dislikes";
+    database.ref('Blog'+window.location.search+'Dislikes/Dislikes').on('value',function(data){dislikes=data.val()});
+       if((localStorage.getItem(pathd)===null&&(localStorage.getItem(path)==="false"||localStorage.getItem(path)===null))||(localStorage.getItem(pathd)==="null"&&(localStorage.getItem(path)===false||localStorage.getItem(path)===null))){
+         localStorage.setItem(pathd,"true");
+         dislikes++
+        document.getElementById("d").style.animation="dislike 1s linear";
+
+        database.ref('Blog'+window.location.search+'Dislikes').set({
+            Dislikes:dislikes
+        })
+       }
+       else{
+           if(localStorage.getItem(pathd)==="true"){
+            localStorage.setItem(pathd,"false");
+            dislikes--;
+            document.getElementById("d").style.animation="";
+            database.ref('Blog'+window.location.search+'Dislikes').set({
+              Dislikes:dislikes
+              })
+           }
+           else if(localStorage.getItem(pathd)==="false"&&(localStorage.getItem(path)==="false"||localStorage.getItem(path)===null)){
+            localStorage.setItem(pathd,"true");
+            dislikes++
+        document.getElementById("d").style.animation="dislike 1s linear"
+
+            database.ref('Blog'+window.location.search+'Dislikes').set({
+              Dislikes:dislikes
+              })
+            }
+       }
+    }
+
+
+</script>
+<script>
+    var database=firebase.database();
+    var pathArray = window.location.search;
+    var liket;
+    var likel;
+
+    var g= database.ref('Blog'+pathArray+'/Title').on('value',function(data){
+        var k=document.getElementById("hello");
+        document.getElementsByTagName("title").value=data.val();
+        k.innerHTML="<center>"+data.val()+"</center><br>";
+    })
+    
+    var b= database.ref('Blog'+pathArray+'/Blog').on('value',function(data){
+        var z=document.getElementById("hello");
+        z.innerHTML+=data.val()+"<br><br>"+"<center><label id='likes'></label><button id='like' onclick='like()' class='like'>LIKE</button><img onclick='like()' id='l' class=l src=like.png width=55px><label id='dislikes'></label><button id='dislike' onclick='dislike()' class='dislike'>DISLIKE</button><img onclick='dislike()' id='d' class=d src=dislike.png width=45px></center>";
+    })
+    setInterval(function(){
+        database.ref('Blog'+pathArray+'Likes/Likes').on('value',function(data){
+       document.getElementById('likes').innerHTML=data.val();
+   })
+   database.ref('Blog'+pathArray+'Dislikes/Dislikes').on('value',function(data){
+       document.getElementById('dislikes').innerHTML=data.val();
+   })
+    liket = document.getElementById("l").offsetTop;
+    likel = document.getElementById("l").offsetLeft;
+    document.getElementById("li").style.left=likel+"px"
+    document.getElementById("li").style.top=liket+"px";
+
+    },1000)
+    function liked(){
+        document.getElementById("l").style.animation="like 1s linear infinite;"
+    }
+    function disliked(){
+        document.getElementById("l").style.animation="like 1s linear"
+    }
+</script>
+</body>
+</html>

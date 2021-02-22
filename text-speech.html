@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker</title>
+    <script src="speak.js"></script>
+</head>
+<style>
+    *{
+        text-align: center;
+      
+    }
+    .msg{
+        width: 36%;
+        height: 15%;
+        border-radius:20px;
+        border: 3px solid black;
+    }
+    button{
+        width: 110px;
+        height: 110px;
+        font-size: 30px;
+        background:radial-gradient(yellow,orange,crimson);
+        border-radius:50%;
+        border: 5px solid black;
+        
+    }
+    @keyframes sp{
+        50%{
+            box-shadow: 0 0 5px white,0 0 10px red, 0 0 15px white, 0 0 20px blue, 0 0 25px white,0 0 30px green;
+        }
+    }
+    
+    
+</style>
+<body>
+    <div>
+       
+
+   <h1>Speaker's Options</h1><br>
+   <h2>Volume: </h2> <input type="range" min="0.5" max="10" value="1" id="vol">
+   <h2>Rate: </h2><input type="range" min="0.5" max="10" value="1" id="rate">
+   <h2>Pitch: </h2><input type="range" min="0.5" max="10" value="1" id="pit"><br><br>
+
+        
+
+   <input class="msg" type="text" id="Text">
+   <br><br>
+        <button id="ok"onclick="speaked()">Speak</button>
+        </div>
+</body>
+</html>

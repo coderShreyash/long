@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="st.css">
+    <script type="text/javascript">
+    function addb(){
+       var name=window.location.search;
+       var myWin= window.open("addblog.html"+name);
+    }
+    </script>
+   <style>
+       iframe{
+        width:82.5%;
+        height: 95%;
+       }
+        
+       .dance{
+           animation:glow 1s linear infinite;
+       }
+       @keyframes glow {
+           0%,100%{
+            transform: rotateZ(0deg);
+
+           }
+           25%{
+           }
+           50%{
+               transform: scale(1.1);
+               text-shadow: 0 0 10px yellow,0 0 20px orange,0 0 30px crimson;
+
+           }
+           75%{
+           }
+       }
+        @media screen and (min-height: 400px){
+            iframe{
+                width:100%;
+            }     
+        }
+        @media screen and (min-height: 400px){
+            iframe{
+                width:100%;
+            }     
+        }
+
+   </style>
+</head>
+<body>
+    <div class="con">
+    <h1>Blogs</h1>
+    <div class="nav">  
+        <h2 id="latest" onclick="document.getElementById('main').src='SeeBlogindex.html';document.getElementById('latest').setAttribute('class','dance');document.getElementById('trend').setAttribute('class','');document.getElementById('mine').setAttribute('class','');">✨ See Latest</h2>
+        <h2 id="trend" onclick="document.getElementById('main').src='SeeTrending.html';document.getElementById('trend').setAttribute('class','dance');document.getElementById('latest').setAttribute('class','');document.getElementById('mine').setAttribute('class','');">😍 See Trending</h2>
+        <h2 onclick="addb()">🖋 Add A Blog</h2>
+        <h2 id="mine" onclick="document.getElementById('main').src='MyWork.html';document.getElementById('mine').setAttribute('class','dance');document.getElementById('latest').setAttribute('class','');document.getElementById('trend').setAttribute('class','');">📈 My Work</h2>
+
+       
+   </div>
+   <iframe id="main" src="SeeBlogindex.html" frameborder=none>
+
+</iframe>
+</div>
+</body>
+</html>

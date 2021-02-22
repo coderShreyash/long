@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Epic</title>
+    <style>
+        .t-s,.a-s{
+            margin-top: 60px;
+           text-decoration: none;
+           width:40%;
+           height: 650px;
+           border:2px solid black;
+           border-radius:10px;
+           text-align: center;
+           animation:glow 1.5s linear infinite;
+          
+        }
+        a{
+            text-decoration: none;
+        }
+        ul{
+            list-style: none;
+            display: flex;
+            margin-left: 30%;
+            margin-right: 30%;
+            cursor: pointer;
+        }
+        li{
+            font-size:xx-large;
+            border: 10px solid rgb(168, 7, 243);
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 20%;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 0 10px yellow,0 0 20px orange,0 0 30px crimson;
+            margin-left: 15px;
+        }
+        h1{
+            background:rgb(209, 208, 208);
+            padding: 5px;
+            margin-top: 0.8px;
+            border-radius: 5px 5px 0 0;
+        }
+        @keyframes glow {
+            40%,60%{
+                box-shadow: 0 0 10px yellow,0 0 20px orange,0 0 30px crimson;
+            }
+          
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li onclick="location.pathname='extra.html'">1</li>
+        <li onclick="location.pathname='extra1.html'">2 </li>
+        <li onclick="location.pathname='extra1.html'">3 </li>
+        <li onclick="location.pathname='extra1.html'">4 </li>
+
+    </ul>
+    <div style="display: flex; justify-content: space-evenly;padding: 20px;flex-direction: row;">
+    <div class="t-s">
+        <a href="text-speech.html" target="blank">
+        <h1>Text to Speech</h1>
+        <img src="https://bloggingx.com/wp-content/uploads/2020/05/text-to-speech-featured-image.png" width="55%" >
+        <h2>Our Text To Speech Engine can translate any text to speech, with you as a controller of all speech devices !!!</h2>
+    </a>
+        <a href="speechtext.html" target="blank">
+        <h1>Speech to Text</h1>
+        <img src="https://www.elegantthemes.com/blog/wp-content/uploads/2019/01/000-Text-to-Speech.png" width="55%" >
+        <h2>Our Speech To Text Engine can translate Your voice to simple text, also it has enabled AI for confidence !!!</h2>
+   </a>
+    </div>
+    
+    <div class="a-s">
+        <a href="web.html" target="blank">
+        <h1>Video Recorder</h1>
+        <img src="https://i.pinimg.com/originals/63/2f/11/632f1197ddb3fa0175417de763eaa773.png" width="28%" >
+        <h2>Record your video using webcam and watch it. Good for preparing for interviews or meetings !!!</h2>
+   </a>
+   <a href="To-do-list.html" target="blank">
+    <h1>To do List</h1>
+    <img src="https://clickup.com/blog/wp-content/uploads/2019/01/to-do-list-apps.png" width="55%" height="22.5%" >
+    <h2>Write All your tasks and be ahead of your friends and time.</h2>
+</a>
+    </div>
+    </div>
+</body>
+</html>

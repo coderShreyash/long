@@ -1,0 +1,42 @@
+.first h1{
+    font-size: 40px;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 5px gold,0 0 10px red,0 0 20px blue;
+}
+.first h2{
+    text-align: center;
+    margin-top:-15px;
+    font-size: 25px;
+    text-shadow: 0 0 5px gold,0 0 10px red;
+}
+
+.second h2{
+    text-align: center;
+    margin-top:40px;
+    font-size: 30px;
+    color: white;
+    text-shadow: 0 0 5px gold,0 0 10px red,0 0 20px blue;
+}
+#res{
+    margin-top:10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding:15px;
+    text-align: left;
+    animation:glow 1.5s linear infinite;
+    line-height: 40px;
+}
+#res h1{
+    text-align: center;
+
+    margin-top:-5px;
+    margin-bottom:-20px;
+}
+@keyframes glow{
+    0%,100%{
+    text-shadow: 0 0 5px gold,0 0 10px red,0 0 20px blue;
+    }
+    50%{
+    text-shadow:0 0 5px white, 0 0 12px gold,0 0 25px red,0 0 47.5px blue;
+    }
+}

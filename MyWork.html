@@ -1,0 +1,263 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        /*the container must be positioned relative:*/
+        .autocomplete {
+          position: relative;
+          display: inline-block;
+        }
+        
+        input {
+          border: 1px solid transparent;
+          background-color: #f1f1f1;
+          padding: 10px;
+          font-size: 16px;
+        }
+        
+        input[type=text] {
+          background-color: #f1f1f1;
+          width: 100%;
+        }
+        
+        input[type=submit] {
+          background-color: DodgerBlue;
+          color: #fff;
+          cursor: pointer;
+        }
+        
+        .autocomplete-items {
+          position: absolute;
+          border: 1px solid #d4d4d4;
+          border-bottom: none;
+          border-top: none;
+          z-index: 99;
+          /*position the autocomplete items to be the same width as the container:*/
+          top: 100%;
+          left: 0;
+          right: 0;
+        }
+        
+        .autocomplete-items div {
+          padding: 10px;
+          cursor: pointer;
+          background-color: #fff; 
+          border-bottom: 1px solid #d4d4d4; 
+        }
+        
+        /*when hovering an item:*/
+        .autocomplete-items div:hover {
+          background-color: #e9e9e9; 
+        }
+        
+        /*when navigating through the items using the arrow keys:*/
+        .autocomplete-active {
+          background-color: DodgerBlue !important; 
+          color: #ffffff; 
+        }
+        </style>
+    <style>
+        *{
+            text-align: center;
+        }
+        .allBlogs{
+            background: linear-gradient(90deg,gray,whitesmoke,white,whitesmoke,gray);
+            height: 80px;
+            margin-bottom: -25px;
+            cursor: pointer;
+            z-index:-1;
+        }
+        .allBlogs:nth-child(1){
+           margin-top:80px;
+        }
+        .con{
+            width:100%;
+            height:90%;
+            background: black;
+            cursor: pointer;
+            
+        }   
+       
+        .left{
+            display: flex;
+            justify-content: space-around;
+        }
+      
+        .top{
+            display:flex;
+            justify-content:center;
+            align-items: baseline;
+            position: fixed;
+            margin-top:-80px;
+            width:100%;
+            align-content: center;
+            background:linear-gradient(-30deg,rgb(5, 185, 5),rgb(6, 192, 6),rgb(101, 240, 88));
+        }
+        
+        .cent input{
+            height:27px;
+            width: 150px;
+            border: 2px solid black;
+            font-size: 20px;
+            transition: 0.5s; 
+        }
+        .cent{
+            display: flex;
+            justify-content:center;
+            align-items: baseline;
+        }
+        .rent{
+            display: flex;
+            align-items: baseline;
+            margin-left: 100px;
+        }
+        .rent select{
+            border: 2px solid black;
+            height:27px;
+            width: 150px;
+            font-size: 20px;
+        }
+        .cent input:focus{
+            font-size: 25px;
+            width: 225px;
+            transition: 0.5s; 
+        }
+        @media screen and (max-width: 800px){
+            .con{
+                width:100%;
+            }      
+        }
+    </style>
+</head>
+<body>
+    <div class="top" id="top">
+        <div class="cent">
+        <h2>Search: </h2>
+            <input id="search" placeholder="Search Box ...">
+    </div>
+    <div class="rent">
+        <h2>Category: </h2>
+        
+        <select id="category">
+        <option>All Categories</option>
+        <option>Information</option>
+        <option>Adventure</option>
+        <option>IIT Sector</option>
+        <option>Fantasy</option>
+        <option>Story</option>
+        <option>Movie Review</option></select>
+    </div>
+    </div>
+    <div id="con"></div>
+    <script>
+      
+        function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        }
+       
+        var chosenCat;
+        var nameen = getCookie("usernaam")
+        console.log(nameen)
+        var blogs=[];
+        function gu(){
+            document.getElementById("bod").click();
+        }
+        function fose(effort){
+          var vi=0;
+          database.ref('Blog?'+effort+'Views/Views').on('value',function(data){
+            vi=data.val();
+          })
+          vi++
+          database.ref('Blog?'+effort+'Views').set({
+            Views:vi
+          })
+          window.open("SeeBlog.html?"+effort);
+    }
+     setInterval(function(){
+         choosenCat=document.getElementById("category").value;
+         choosen=document.getElementById("search").value;
+         var xz=true;
+         var date="";
+         var category="";
+         var author="Anonymus";
+         var ser="";
+        document.getElementById("con").innerHTML="";
+        for(var a=num;a>0;a--){
+            database.ref('Blog?'+a+'/Allowed').on('value',function(data){xz=data.val()});  
+            database.ref('Blog?'+a+'/Aauthor').on('value',function(data){author=data.val().replace("?","")});  
+            database.ref('Blog?'+a+'/Date').on('value',function(data){date=data.val()}); 
+            database.ref('Blog?'+a+'/Category').on('value',function(data){category=data.val()});  
+            database.ref('Blog?'+a+'/Title').on('value',function(data){ser=data.val()});  
+            database.ref('Blog?'+a+'/Blog').on('value',function(data){sera=data.val()});  
+            database.ref('Blog?'+a+'Likes/Likes').on('value',function(data){sena=data.val()});  
+            database.ref('Blog?'+a+'Views/Views').on('value',function(data){views=data.val()});  
+            
+            if(((xz===true&&category===choosenCat)||(xz===true&&choosenCat==="All Categories"))&&author===nameen){
+                if(ser.trim().toLowerCase().includes(choosen.trim().toLowerCase())||choosen.trim()===""||sera.trim().toLowerCase().includes(choosen.trim().toLowerCase())){          
+                database.ref('Blog?'+a+'/Title').on('value',function(data){
+                document.getElementById("con").innerHTML+="<div class='allBlogs'"+"id=b"+a+" onclick="+"fose("+a+")"+">"+data.val()+"<label class='left'><div>By ~ <img src='author.png' width=10>"+author.replace("?"," ")+"</div><div>Views: "+views+"<img src='view.png' width=15> </div><div>"+category+"</div><div>Likes: "+sena+"<img src='heart.png' width=17.5 height=14> </div><div> Date: "+date+"</div></label></div><br>";
+             })
+                }
+            }
+        }
+
+        if(document.getElementById("con").innerHTML===""){
+            document.getElementById("top").style.marginTop="0";
+        }
+        else if(document.getElementById("con").innerHTML!==""){
+            document.getElementById("top").style.marginTop="-80px";
+        }
+     },500)
+
+  
+    
+       </script>
+         <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDKPwz6xjyCUN3r2k0EkbFRGCZCsU0FvZY",
+    authDomain: "the-blog-fest.firebaseapp.com",
+    databaseURL: "https://the-blog-fest.firebaseio.com",
+    projectId: "the-blog-fest",
+    storageBucket: "the-blog-fest.appspot.com",
+    messagingSenderId: "949240382353",
+    appId: "1:949240382353:web:08a4976ce1fc61fefd9030"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+    var database=firebase.database();
+   
+
+    var num;
+    var blogs;
+    database.ref('Blogging/Blogs').on('value',function(data){
+        num=data.val();
+    }) 
+    </script>
+    
+</body>
+</html>

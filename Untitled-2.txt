@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="text">Sign Up Form</div>
+            <form id="myForm">
+                <div class="data ss-item-required">
+                    <label for="name">Your Name</label>
+                <input autocomplete=none type="text" name="name" id="name" required>
+                
+                </div>
+                <div class="data ss-item-required">       
+                    <label for="age">Your Age</label>      
+                    <input type="number" name="age" id="age" required>
+                   
+                </div>
+                <div class="data ss-item-required">
+                    <label for="pass">Create Password</label>
+                    <input type="password" name="pass" id="pass" required>
+                  
+                </div>
+    
+                <a href="#">Forgot Password ?</a>
+               
+               <div class="btn" onclick="submitData()">
+                <div class="inner"></div>
+                <button type="button">Sign up</button>
+            </div>
+            </form>
+    
+        </div>
+    

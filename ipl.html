@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Winners</title>
+    <link rel="stylesheet" href="IPL.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCauUkb3gfLZBnXBMvSCI4nrKEcauXcKoo",
+    authDomain: "ipl-data-9bae0.firebaseapp.com",
+    projectId: "ipl-data-9bae0",
+    storageBucket: "ipl-data-9bae0.appspot.com",
+    messagingSenderId: "1006563198906",
+    appId: "1:1006563198906:web:06e7d962f9c3ad0440ff83"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+</head>
+<body style="background:url('https://352.com.ng/wp-content/uploads/2017/02/UCL.jpg');background-size: cover;">
+    <center>
+      
+        <div class="first">
+            <h1>IPL Winners</h1>
+    <h2>Know All The Winners Of IPL</h2>
+        </div>
+    <div id="second" class="second">
+
+    <select id="year" style="width:150px;height:28px;font-size:22.5px;font-family:1000;background:linear-gradient(rgb(10,150,150),rgb(50,150,100),rgb(50,150,50))">
+        <option>Year 2008</option>
+        <option>Year 2009</option>
+        <option>Year 2010</option>
+        <option>Year 2011</option>
+        <option>Year 2012</option>
+        <option>Year 2013</option>
+        <option>Year 2014</option>
+        <option>Year 2015</option>
+        <option>Year 2016</option>
+        <option>Year 2017</option>
+        <option>Year 2018</option>
+        <option>Year 2019</option>
+        <option selected>Year 2020</option>
+    </select>
+    </div>
+    <div id="res" style="width:420px;color:white;font-size:22.5px"></div>
+    </center>
+    <script src="IPL.js"></script>
+</body>
+</html>

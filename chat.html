@@ -1,0 +1,347 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .chatt{
+            position: relative;
+            margin-bottom:-10%;
+            margin-left:90%;
+        }
+        .displayarea{
+            width:99.5%;
+            height: 80%;
+            background-color: white;
+            border-top: 4px solid black;  
+            border-left: 4px solid black;  
+            border-right: 4px solid black;     
+            border-bottom: 1px solid black;    
+            overflow: scroll;    
+        }
+    .personalchat{   
+        width:34.5%;
+        height:100%;
+        border-left: 4px solid black;
+        border-radius: 2%;
+        float: right;
+        display: none;
+    }
+    .ok{
+        width:100%;
+        height:100%;
+    }
+    .Msg{
+        font-size: x-large;
+        font-family: serif;
+        margin-top:-54%;
+        float:center;
+        margin-left:0.75%;
+        height: 10%;
+        width: 85%;
+        border: 4px solid black;
+        background-color: whitesmoke;
+        text-align: left;
+        overflow: scroll;
+        }
+.fixed{
+    width:97%;
+    padding: -1px;
+    position: fixed;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    background: rgb(4, 180, 180);
+}
+.okd{
+    margin-top:50px;
+}
+.left{
+    float: right;
+}
+#send1{           
+    float: right;
+    margin-top:1%;
+    height:15.5%;
+    width:10%;
+    border: 4px solid black;
+    border-radius: 50%;
+    margin-right: 0.1px;
+    background: rgb(0, 248, 215);
+    color:rgb(68, 0, 255);
+    margin-top:10px;
+
+} 
+img{
+    width:100px;
+    height:100px;
+}
+.top{    
+    margin-bottom: -10px;
+    display: none;
+}
+#send1{          
+    font-size:45px;
+    width:80px;
+    margin-top:22.5px;
+    height:80px;
+    } 
+#image{
+    margin-top: 20px;
+    margin-bottom: -17.5px;
+    width: 70px;
+    height: 70px;
+}
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,1);
+  z-index: 2;
+  cursor: pointer;
+  overflow: scroll;
+}
+.overlay{
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-evenly;
+align-content: center;
+}
+.overlay>img{
+    flex: 0 17%;
+    width: 120px;
+    height: 120px;
+    margin: 7.5px;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    margin-bottom: -15px;
+    margin-top: 0;
+
+}
+
+@media screen and (max-width: 769px){
+.overlay{
+
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-content: center;
+}
+    #image{
+    margin-top: 20px;
+    margin-bottom: -15px;
+    width: 60px;
+    height: 60px;
+}
+    .Msg{
+        width:60%;
+
+    }
+    #send1{           
+        font-size: 40px;
+        width:60px;
+        height:60px;
+        margin-top:22.5px;
+
+        } 
+}
+@media screen and (max-width:426px) {
+    .overlay{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+}
+}
+
+    </style>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDKPwz6xjyCUN3r2k0EkbFRGCZCsU0FvZY",
+    authDomain: "the-blog-fest.firebaseapp.com",
+    databaseURL: "https://the-blog-fest.firebaseio.com",
+    projectId: "the-blog-fest",
+    storageBucket: "the-blog-fest.appspot.com",
+    messagingSenderId: "949240382353",
+    appId: "1:949240382353:web:08a4976ce1fc61fefd9030"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+</head>
+<body onresize="guru()">
+
+<div id="overlay">
+    <h1>Choose Your Image</h1><br>
+    <div class="overlay">
+    <img src="cool.png" onclick="send('<img src=cool.png>')">
+    <img src="cry.png" onclick="send('<img src=cry.png>')">
+    <img src="confused.png" onclick="send('<img src=confused.png>')">
+    <img src="happy.jpg" onclick="send('<img src=happy.jpg>')">
+    <img src="smile.jpg" onclick="send('<img src=smile.jpg>')">
+    <img src="wink.png" onclick="send('<img src=wink.png>')">
+    
+        
+</div>
+
+
+</div>
+<div>
+<div class="displayarea" id="displayarea">
+
+</div>
+<div class="personalchat" id='personalchat'>  
+</div>
+</div>
+<center>
+<button class="top" onclick="topFunction()" id="top">Go to Top</button>
+</center>
+<img id="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI85pIH0h5RUvGQjrK3-f9wDqP71kuK_ND5w&usqp=CAU" onclick="chooseImage()">
+<input type="text" class="Msg" id='Msg' placeholder="Your message ...">
+   
+    <button class="fa fa-send send1" id="send1" onclick="send(document.getElementById('Msg').value)"></button>
+    
+   </div>
+   
+    <script type="text/javascript">
+    function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+var naam = getCookie("usernaam");
+function guru(){
+    screenw = screen.width;
+    send1w = document.getElementById("send1").offsetWidth;
+    imagew = document.getElementById("image").offsetWidth;  
+
+    send1wp = (send1w/screenw)*100;
+    imagewp = (imagew/screenw)*100;
+
+    inpw = screenw-(imagew+send1w+20);
+
+    inpwp=(inpw/screenw)*100
+
+    document.getElementById("Msg").style.width=inpwp+"%";
+}
+    screenw = screen.width;
+    send1w = document.getElementById("send1").offsetWidth;
+    imagew = document.getElementById("image").offsetWidth;  
+
+    send1wp = (send1w/screenw)*100;
+    imagewp = (imagew/screenw)*100;
+
+    inpw = screenw-(imagew+send1w+25);
+
+    inpwp=(inpw/screenw)*100
+
+    document.getElementById("Msg").style.width=inpwp+"%";
+    var database = firebase.database();
+
+     function send(msg){
+         if(msg.trim().length>0){
+         database.ref('Chat_Section/Chats/Chat').on('value',function(data){
+             prev=data.val();
+         })
+         database.ref('Chat_Section/Chats').update({
+             Chat:prev+naam.replace("?","")+": "+msg+'<br>Date: '+Date().slice(0,15)+"<br>"+"<br>"
+         })
+       document.getElementById('Msg').value="";
+       document.getElementById("displayarea").scrollTop = 1e+10;
+        }
+        else{
+        alert("Please Write something to send ...");
+        document.getElementById('Msg').value="";
+        }
+        off();
+     }
+     document.getElementById('Msg').addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    send(document.getElementById('Msg').value);
+}
+});
+
+database.ref('Chat_Section/Chats/Chat').on('value',function(data){
+ document.getElementById("displayarea").innerHTML="<div class='fixed'>Global Chat</div><div class='okd'>"+data.val()+"</div>";
+})
+setInterval(function(){
+    database.ref('Chat_Section/Chats/').on("child_changed",function(data){
+    database.ref('Chat_Section/Chats/Chat').on('value',function(data){ 
+    document.getElementById("displayarea").innerHTML="<div class='fixed'>Global Chat</div><div class='okd'>"+data.val()+"</div>";
+     })
+    })
+   },500)
+    function dispAll(){
+        document.getElementById('personalchat').style.display="block";
+    }
+    function encodeImageFileAsURL(element) {
+  var file = element.files[0];
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    var naam0=window.location.search;
+    database.ref('Chat_Section/Chats/Chat').on('value',function(data){
+             prev=data.val();
+         })
+         database.ref('Chat_Section/Chats').set({
+             Chat:prev+naam0.replace("?","")+": <img src = "+reader.result+">"+'<br>Date: '+Date().slice(0,15)+"<br>"+"<br>"
+         })
+         document.getElementById("displayarea").scrollTop = 1e+10;
+        }
+  reader.readAsDataURL(file);
+}
+    var mybutton;
+document.getElementById("displayarea").onscroll = function() {scrollFunction()};
+mybutton=document.getElementById("top");
+function scrollFunction() {
+  if (document.getElementById("displayarea").scrollTop > 20 || document.getElementById("displayarea").scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+document.getElementById("overlay").addEventListener("click",function(){
+off()
+})
+function topFunction() {
+    document.getElementById("displayarea").scrollTop = 0;
+}
+function chooseImage(){
+    document.getElementById("overlay").style.display="block";
+}
+function off(){
+    document.getElementById("overlay").style.display="none";
+}
+    </script>
+</body>
+</html>

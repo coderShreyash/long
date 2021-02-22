@@ -1,0 +1,173 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <style>
+      #toast {
+    visibility: hidden;
+    max-width: 50px;
+    height: 50px;
+    /*margin-left: -125px;*/
+    margin: auto;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+
+    position: fixed;
+    z-index: 1;
+    left: 0;right:0;
+    bottom: 30px;
+    font-size: 17px;
+    white-space: nowrap;
+}
+#toast #img{
+	width: 50px;
+	height: 50px;
+    
+    float: left;
+    
+    padding-top: 16px;
+    padding-bottom: 16px;
+    
+    box-sizing: border-box;
+
+    
+    background-color: #111;
+    color: #fff;
+}
+.tres{
+  width:400px;
+  background:rgb(216, 214, 214);
+  margin:5px;
+  height:70px;
+  justify-content: center;
+  display: flex;
+  border-radius: 7px;
+}
+.tres button{
+  background:rgb(0, 196, 153);
+  margin:5px;
+  height:50px;
+  font-size:30px;
+  border-radius: 10px;
+  margin-left:35px;
+  cursor: pointer;
+  position: relative;
+  right:-56px;
+}
+.tres label{
+  position: relative;
+  bottom:-40px;
+  margin-left:-20px;
+
+}
+.tres h1{
+  position: absolute;
+  left:25px;
+  margin-top:0px;
+  font-size:28px;
+}
+#allTasks{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+}
+#toast #desc{
+
+    
+    color: #fff;
+   
+    padding: 16px;
+    
+    overflow: hidden;
+	white-space: nowrap;
+}
+
+#toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, expand 0.5s 0.5s,stay 3s 1s, shrink 0.5s 4s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes expand {
+    from {min-width: 50px} 
+    to {min-width: 350px}
+}
+
+@keyframes expand {
+    from {min-width: 50px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes stay {
+    from {min-width: 350px} 
+    to {min-width: 350px}
+}
+
+@keyframes stay {
+    from {min-width: 350px}
+    to {min-width: 350px}
+}
+@-webkit-keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@keyframes shrink {
+    from {min-width: 350px;} 
+    to {min-width: 50px;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 60px; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 60px; opacity: 0;}
+}
+    </style>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyB2Yc_0DqEePsu9nA5nU_jqP7jcd3kesyU",
+    authDomain: "josh-codes.firebaseapp.com",
+    databaseURL: "https://josh-codes.firebaseio.com",
+    projectId: "josh-codes",
+    storageBucket: "josh-codes.appspot.com",
+    messagingSenderId: "756996246662",
+    appId: "1:756996246662:web:ed47ebba42d7d7b2421507"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+</head>
+<body>
+  <h1>To Do List</h1>
+  <p>Write Your Task And Click on the button, or press Enter to note It.</p>
+  
+  <div style="display: flex;"><input style="font-size: 30px;font-family:Palatino" placeholder="Your Task ..." maxlength=17 id="task" type="text"><button onclick="addTask()" style="font-size: 30px;">+</button></div>
+   <h1>Your Previous Tasks</h1>
+  <div id="allTasks"></div>
+  <div id="toast"><div id="img">Icon</div><div id="desc">A notification message..</div></div>
+  <script src="list.js"></script>
+</body>
+</html>

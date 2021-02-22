@@ -1,0 +1,86 @@
+<!doctype html>
+	<head>
+		<style>
+			/* CSS comes here */
+			body {
+			    font-family: arial;
+			    text-align:center;
+			    font-size:40px;
+			}
+			button {
+			    padding:10px;
+			     font-size:40px;
+			    background:radial-gradient(violet,indigo);
+			    color: #FFFFFF;
+			    border: 0px;
+			    cursor:pointer;
+			    border-radius: 8px;
+			}
+			#output {
+			    background-color:transparent;
+			    padding:10px;
+			    width: 100%;
+			    margin-top:20px;
+			    line-height:30px;
+			}
+			.hide {
+			    display:none;
+			}
+			.show {
+			    display:block;
+			}
+		</style>
+		<title>JavaScript Speech to Text</title>
+	</head>
+	<body>
+		<h2>Welcome To Our Speech to Text Engine</h2>
+        <p>Click on the below button and speak something...</p>
+        <p><button type="button" onclick="runSpeechRecognition()">Speech to Text</button> &nbsp; <span id="action"></span></p>
+        <div id="output" class="hide"></div>
+		<script>
+
+		    function runSpeechRecognition() {
+		        // get output div reference
+		        var output = document.getElementById("output");
+		        // get action element reference
+		        var action = document.getElementById("action");
+                // new speech recognition object
+                var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+                var recognition = new SpeechRecognition();
+
+                // This runs when the speech recognition service starts
+                recognition.onstart = function() {
+                    action.innerHTML = "<small>Listening, please speak...</small>";
+                };
+
+                recognition.onspeechend = function() {
+                    action.innerHTML = "<small>Stopped listening, hope you are done...</small>";
+                    recognition.stop();
+                }
+
+                // This runs when the speech recognition service returns result
+                recognition.onresult = function(event) {
+                    var transcript = event.results[0][0].transcript+".";
+                    var confidence = event.results[0][0].confidence;
+                    var comments = "";
+                    if(confidence<0.7){
+                    comments="<br><br>Please Turn Off any background music.<br><br>And Speak A Little Clearly.";
+                    }
+                    else{
+                    comments="";
+                    }
+                    if(confidence>0.5){
+                    output.innerHTML = "<b>You Said:</b> " + transcript + "<br><br> <b>Confidence in results:</b> " + Math.round(confidence*100)+"%"+comments;
+                    }
+                    else{
+                    output.innerHTML = "<b>Sorry, Not Able To Detect Your Speech"+comments;
+                    }
+                    output.classList.remove("hide");
+                };
+
+                 // start recognition
+                 recognition.start();
+	        }
+		</script>
+	</body>
+</html>
